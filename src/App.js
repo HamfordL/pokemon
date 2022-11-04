@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./App.css";
 
 const Row = (props) => {
   const { name } = props;
@@ -12,13 +13,14 @@ const Row = (props) => {
 
 const Table = (props) => {
   const { data } = props;
+
   console.log(data);
 
   return (
     <table>
       <tbody>
         {data.map((row) => (
-          <Row name={row.name} number={row.number} />
+          <Row name={row.name} />
         ))}
       </tbody>
     </table>
