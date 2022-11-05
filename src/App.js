@@ -35,8 +35,8 @@ function App() {
       <table>
         <tbody
           style={{
-            background: "black",
-            color: "yellow",
+            background: "lightblue",
+            color: "black",
             padding: 100,
             width: 100,
             height: 100,
@@ -57,7 +57,7 @@ function App() {
         <Col span={4} />
         <Col span={18}>
           <Divider
-            style={{ background: "black", color: "yellow", padding: 25 }}
+            style={{ background: "black", color: "red", padding: 25 }}
             level={1}
             orientation="C"
           >
