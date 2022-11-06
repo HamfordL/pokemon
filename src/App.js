@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { PageHeader, Col, Row, Divider } from "antd";
 
 function App() {
-  const [rows, setRows] = useState([]);
+  const [rows, setRows, setColumns] = useState([]);
 
   useEffect(() => {
     if (!rows.length) {
@@ -21,7 +21,16 @@ function App() {
 
     return (
       <tr>
-        <td>{name}</td>
+        <td
+          style={{
+            background: "lightblue",
+            color: "black",
+            padding: 25,
+            width: 520,
+          }}
+        >
+          {name}
+        </td>
       </tr>
     );
   };
@@ -33,16 +42,7 @@ function App() {
 
     return (
       <table>
-        <tbody
-          style={{
-            background: "lightblue",
-            color: "black",
-            padding: 100,
-            width: 100,
-            height: 100,
-          }}
-          level={2}
-        >
+        <tbody level={2}>
           {data.map((row) => (
             <Abc name={row.name} />
           ))}

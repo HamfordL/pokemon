@@ -25,3 +25,7 @@ th {
 td {
   background-color: rgb(245, 69, 69);
 }
+.app {
+  display: grid;
+  grid-template-columns: 10px 10px;
+}
