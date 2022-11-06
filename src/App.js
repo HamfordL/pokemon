@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { PageHeader, Col, Row, Divider } from "antd";
 
 function App() {
-  const [rows, setRows, setColumns] = useState([]);
+  const [rows, setRows] = useState([]);
 
   useEffect(() => {
     if (!rows.length) {
@@ -21,16 +21,19 @@ function App() {
 
     return (
       <tr>
-        <td
-          style={{
-            background: "lightblue",
-            color: "black",
-            padding: 25,
-            width: 520,
-          }}
-        >
-          {name}
-        </td>
+        <Row>
+          <Col span={6}></Col>
+          <td
+            style={{
+              background: "lightblue",
+              color: "black",
+              padding: 25,
+              width: 509,
+            }}
+          >
+            {name}
+          </td>
+        </Row>
       </tr>
     );
   };
