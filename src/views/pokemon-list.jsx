@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { Col, Row, Spin } from "antd";
+import { useNavigate } from "react-router-dom";
 
 const PokemonList = () => {
   const [pokemons, setPokemons] = useState([]);
+  const navigateTo = useNavigate();
 
   useEffect(() => {
     if (!pokemons.length) {
@@ -50,6 +52,7 @@ const PokemonList = () => {
               flexDirection: "column",
               padding: "1rem",
             }}
+            onClick={() => navigateTo(`/pokemon/${pokemon.id}`)}
           >
             <img src={pokemon.sprites.front_default} alt={pokemon.name} />
             {pokemon.name}

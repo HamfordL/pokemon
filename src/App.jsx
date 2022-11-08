@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import { PageHeader, Col, Row, Divider } from "antd";
 
 import PokemonList from "./views/pokemon-list";
+import PokemonDetails from "./views/pokemon-details";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
 
           <Routes>
             <Route path="/" exact element={<PokemonList />} />
+            <Route path="/pokemon/:id" exact element={<PokemonDetails />} />
           </Routes>
         </Col>
       </Row>
