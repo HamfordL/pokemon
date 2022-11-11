@@ -30,6 +30,7 @@ const PokemonDetails = () => {
       </div>
     );
   }
+
   return (
     <div>
       <img src={pokemon.sprites.front_default} alt={pokemon.name} />
@@ -37,8 +38,15 @@ const PokemonDetails = () => {
       <br />
       name: {pokemon.name}
       <br />
+      <br />
       type: {pokemon.types.map((typeObject) => typeObject.type.name).join(", ")}
       <br />
+      <br />
+      moves:{" "}
+      {pokemon.moves.map((moveObject) => moveObject.move.name).join(", ")}
+      <br />
+      <br />
+      evolution chain:{" "}
     </div>
   );
 };
