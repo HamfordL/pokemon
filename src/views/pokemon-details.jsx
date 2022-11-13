@@ -12,22 +12,31 @@ const PokemonDetails = () => {
 
   useEffect(() => {
     if (!pokemon) {
-      fetch("https://pokeapi.co/api/v2/pokemon/" + urlParams.id)
-        .then((response) => response.json())
-        .then((data) => setPokemon(data));
-
-      Promise.all();
-      fetch()
+      fetch(`https://pokeapi.co/api/v2/pokemon/${urlParams.id}`)
         .then((res) => res.json())
-        .then((res) =>
-          fetch("https://pokeapi.co/api/v2/pokemon-species/" + urlParams.id)
-            .then((res) => res.json())
-
-            .then((species_res) =>
-              fetch("https://pokeapi.co/api/v2/evolution-chain/" + urlParams.id)
-            )
-            .then((res) => res.json())
-            .then((data) => setPokemon(data))
+        .then((pokemonDetails) =>
+          Promise.all([
+            pokemonDetails,
+            fetch(pokemonDetails.species.url).then((res) => res.json()),
+          ])
+        )
+        .then(([pokemonDetails, speciesDetails]) =>
+          Promise.all([
+            {
+              ...pokemonDetails,
+              species: {
+                ...pokemonDetails.species,
+                ...speciesDetails,
+              },
+            },
+            fetch(speciesDetails.evolution_chain.url).then((res) => res.json()),
+          ])
+        )
+        .then(([speciesDetails, evoDetails]) =>
+          setPokemon({
+            ...speciesDetails,
+            evolution: evoDetails,
+          })
         );
     }
   });
@@ -61,12 +70,15 @@ const PokemonDetails = () => {
       type: {pokemon.types.map((typeObject) => typeObject.type.name).join(", ")}
       <br />
       <br />
-      moves:{" "}
-      {pokemon.moves.map((moveObject) => moveObject.move.name).join(", ")}
+      moves:
+      <ol>
+        {pokemon.moves.map(({ move: { name } }) => (
+          <li key={name}>{name}</li>
+        ))}
+      </ol>
       <br />
       <br />
-      evolution chain:{" "}
-      <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+      evolution chain:
     </div>
   );
 };
