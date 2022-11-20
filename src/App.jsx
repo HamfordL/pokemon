@@ -14,7 +14,7 @@ function App() {
             level={1}
             orientation="C"
           >
-            Generation 1 Pokemon
+            Generation 1 Pokedex
           </Divider>
 
           <PageHeader

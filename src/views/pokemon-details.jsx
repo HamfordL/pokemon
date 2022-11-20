@@ -32,12 +32,20 @@ const PokemonDetails = () => {
             fetch(speciesDetails.evolution_chain.url).then((res) => res.json()),
           ])
         )
-        .then(([speciesDetails, evoDetails]) =>
+        .then(([pokemonDetails, evoDetails]) => {
+          let evoChain = [];
+          let currentPokemon = evoDetails.chain;
+          do {
+            evoChain.push(currentPokemon);
+            currentPokemon = currentPokemon.evolves_to[0];
+          } while (currentPokemon && currentPokemon.evolves_to);
+
           setPokemon({
-            ...speciesDetails,
+            ...pokemonDetails,
             evolution: evoDetails,
-          })
-        );
+            evoChain: evoChain,
+          });
+        });
     }
   });
 
@@ -57,11 +65,13 @@ const PokemonDetails = () => {
       </div>
     );
   }
-
+  console.log(pokemon);
   return (
     <div>
       <img src={pokemon.sprites.front_default} alt={pokemon.name} />{" "}
       <img src={pokemon.sprites.back_default} alt={pokemon.name} />{" "}
+      <img src={pokemon.sprites.front_shiny} alt={pokemon.name} />{" "}
+      <img src={pokemon.sprites.back_shiny} alt={pokemon.name} />{" "}
       <button onClick={() => navigate(-1)}>Go back</button>
       <br />
       name: {pokemon.name}
@@ -79,6 +89,11 @@ const PokemonDetails = () => {
       <br />
       <br />
       evolution chain:
+      <ol>
+        {pokemon.evoChain.map((evolution) => (
+          <li key={evolution.species.name}>{evolution.species.name}</li>
+        ))}
+      </ol>
     </div>
   );
 };
