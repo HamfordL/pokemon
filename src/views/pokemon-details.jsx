@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { Spin } from "antd";
+import { Spin, Col, Row } from "antd";
 
 import { useParams, useNavigate } from "react-router-dom";
 
@@ -66,6 +66,7 @@ const PokemonDetails = () => {
     );
   }
   console.log(pokemon);
+
   return (
     <div>
       <img src={pokemon.sprites.front_default} alt={pokemon.name} />{" "}
@@ -74,26 +75,62 @@ const PokemonDetails = () => {
       <img src={pokemon.sprites.back_shiny} alt={pokemon.name} />{" "}
       <button onClick={() => navigate(-1)}>Go back</button>
       <br />
-      name: {pokemon.name}
+      <Col
+        style={{
+          fontWeight: "bold",
+          fontVariantCaps: "small-caps",
+          fontSize: 24,
+        }}
+      >
+        Name: {pokemon.name}
+      </Col>
       <br />
       <br />
-      type: {pokemon.types.map((typeObject) => typeObject.type.name).join(", ")}
+      <Col
+        style={{
+          fontWeight: "bold",
+          fontVariantCaps: "small-caps",
+          fontSize: 18,
+        }}
+      >
+        Type:{" "}
+        {pokemon.types.map((typeObject) => typeObject.type.name).join(", ")}
+      </Col>
       <br />
       <br />
-      moves:
-      <ol>
-        {pokemon.moves.map(({ move: { name } }) => (
-          <li key={name}>{name}</li>
-        ))}
-      </ol>
+      <Col
+        style={{
+          fontWeight: "bold",
+          fontVariantCaps: "small-caps",
+          fontSize: 18,
+          columns: "200px",
+        }}
+      >
+        Moveset:
+        <ol>
+          <br />
+          {pokemon.moves.map(({ move: { name } }) => (
+            <li key={name}>{name}</li>
+          ))}
+          <br />
+        </ol>
+      </Col>
       <br />
       <br />
-      evolution chain:
-      <ol>
-        {pokemon.evoChain.map((evolution) => (
-          <li key={evolution.species.name}>{evolution.species.name}</li>
-        ))}
-      </ol>
+      <Col
+        style={{
+          fontWeight: "bold",
+          fontVariantCaps: "small-caps",
+          fontSize: 18,
+        }}
+      >
+        Evolution chain:
+        <ol>
+          {pokemon.evoChain.map((evolution) => (
+            <li key={evolution.species.name}> {evolution.species.name}</li>
+          ))}
+        </ol>
+      </Col>
     </div>
   );
 };
