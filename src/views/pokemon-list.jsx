@@ -1,15 +1,21 @@
 import { useEffect, useState } from "react";
 import { Col, Row, Spin } from "antd";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const PokemonList = () => {
-  const [pokemons, setPokemons] = useState([]);
+import { pokemonGenerations } from "../App";
+
+const PokemonList = (props) => {
+  const selectedGeneration = props.generation;
+  const generation = pokemonGenerations[selectedGeneration];
+  const pokemons = props.pokemons;
+
   const navigateTo = useNavigate();
-  const urlParams = useParams();
 
   useEffect(() => {
     if (!pokemons.length) {
-      fetch("https://pokeapi.co/api/v2/pokemon?limit=905&offset=0")
+      fetch(
+        `https://pokeapi.co/api/v2/pokemon?limit=${generation.limit}&offset=${generation.offset}`
+      )
         .then((response) => response.json())
         .then((response) =>
           Promise.all(
@@ -18,7 +24,7 @@ const PokemonList = () => {
             )
           )
         )
-        .then((data) => setPokemons(data));
+        .then((data) => props.setPokemons(data));
     }
   });
 

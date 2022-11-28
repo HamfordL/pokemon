@@ -11,7 +11,7 @@ import titleBanner from "./images/Pokemon.png";
 //list out different gens of pokemon
 //view different pokemons, that are in their respected gen as a grp
 
-const pokemonGenerations = [
+export const pokemonGenerations = [
   {
     limit: 151,
     offset: 0,
@@ -70,11 +70,12 @@ const pokemonGenerations = [
 
 function App() {
   const [generation, setGeneration] = useState(pokemonGenerations[0].value);
-
+  const [pokemons, setPokemons] = useState([]);
   const handleChange = (selectedGeneration) => {
     setGeneration(selectedGeneration);
+    setPokemons([]);
   };
-  console.log(generation);
+
   return (
     <div className="App">
       <Row
@@ -107,7 +108,17 @@ function App() {
           <br />
           <br />
           <Routes>
-            <Route path="/" exact element={<PokemonList />} />
+            <Route
+              path="/"
+              exact
+              element={
+                <PokemonList
+                  generation={generation}
+                  pokemons={pokemons}
+                  setPokemons={setPokemons}
+                />
+              }
+            />
             <Route path="/pokemon/:id" exact element={<PokemonDetails />} />
           </Routes>
         </Col>
