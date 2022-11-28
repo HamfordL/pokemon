@@ -8,9 +8,6 @@ import PokemonDetails from "./views/pokemon-details";
 
 import titleBanner from "./images/Pokemon.png";
 
-//list out different gens of pokemon
-//view different pokemons, that are in their respected gen as a grp
-
 export const pokemonGenerations = [
   {
     limit: 151,
