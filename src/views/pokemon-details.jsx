@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { Spin, Col, Row } from "antd";
+import { Spin, Col } from "antd";
 
 import { useParams, useNavigate } from "react-router-dom";
 

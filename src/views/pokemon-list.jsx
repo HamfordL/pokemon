@@ -1,53 +1,15 @@
 import { useEffect, useState } from "react";
 import { Col, Row, Spin } from "antd";
-import { useNavigate } from "react-router-dom";
-
-const pokemonGeneration = [
-  {
-    limit: 151,
-    offset: 0,
-  },
-  {
-    limit: 100,
-    offset: 151,
-  },
-  {
-    limit: 135,
-    offset: 251,
-  },
-  {
-    limit: 107,
-    offset: 386,
-  },
-  {
-    limit: 156,
-    offset: 493,
-  },
-  {
-    limit: 72,
-    offset: 649,
-  },
-  {
-    limit: 88,
-    offset: 721,
-  },
-  {
-    limit: 96,
-    offset: 809,
-  },
-  {
-    limit: 103,
-    offset: 905,
-  },
-];
+import { useNavigate, useParams } from "react-router-dom";
 
 const PokemonList = () => {
   const [pokemons, setPokemons] = useState([]);
   const navigateTo = useNavigate();
+  const urlParams = useParams();
 
   useEffect(() => {
     if (!pokemons.length) {
-      fetch("https://pokeapi.co/api/v2/pokemon?limit=151&offset=0")
+      fetch("https://pokeapi.co/api/v2/pokemon?limit=905&offset=0")
         .then((response) => response.json())
         .then((response) =>
           Promise.all(
@@ -68,8 +30,9 @@ const PokemonList = () => {
           flex: 1,
           justifyContent: "center",
           alignItems: "center",
-          width: "100vw",
-          height: "100vh",
+          width: "100%",
+          height: "100%",
+          background: "lightblue",
         }}
       >
         <Spin size="large" tip="Loading pokemon data" />
