@@ -82,15 +82,24 @@ const PokemonDetails = () => {
           fontSize: 24,
         }}
       >
-        Name: {pokemon.name}
+        PokeDex #: {pokemon.id}
       </Col>
-      <br />
       <br />
       <Col
         style={{
           fontWeight: "bold",
           fontVariantCaps: "small-caps",
-          fontSize: 18,
+          fontSize: 24,
+        }}
+      >
+        Name: {pokemon.name}
+      </Col>
+      <br />
+      <Col
+        style={{
+          fontWeight: "bold",
+          fontVariantCaps: "small-caps",
+          fontSize: 24,
         }}
       >
         Type:{" "}
@@ -102,7 +111,7 @@ const PokemonDetails = () => {
         style={{
           fontWeight: "bold",
           fontVariantCaps: "small-caps",
-          fontSize: 18,
+          fontSize: 24,
           columns: "200px",
         }}
       >
@@ -121,7 +130,7 @@ const PokemonDetails = () => {
         style={{
           fontWeight: "bold",
           fontVariantCaps: "small-caps",
-          fontSize: 18,
+          fontSize: 24,
         }}
       >
         Evolution chain:

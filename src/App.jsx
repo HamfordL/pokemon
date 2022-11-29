@@ -28,14 +28,14 @@ export const pokemonGenerations = [
     label: "Generation III",
   },
   {
-    limit: 107,
+    limit: 108,
     offset: 386,
     value: 3,
     label: "Generation IV",
   },
   {
-    limit: 156,
-    offset: 493,
+    limit: 155,
+    offset: 494,
     value: 4,
     label: "Generation V",
   },
@@ -82,11 +82,18 @@ function App() {
           color: "blue",
         }}
       >
-        <Col offset={3} span={18}>
+        <Col
+          style={{
+            background: "lightblue",
+            height: "100%",
+            color: "blue",
+          }}
+          offset={3}
+          span={18}
+        >
           <Divider
             style={{
               background: "black",
-              color: "red",
               padding: 150,
               backgroundImage: `url(${titleBanner})`,
               backgroundRepeat: "no-repeat",
@@ -95,13 +102,18 @@ function App() {
             }}
             level={1}
             orientation="C"
-          >
-            <Select
-              options={pokemonGenerations}
-              onChange={handleChange}
-              value={generation}
-            />
-          </Divider>
+          ></Divider>
+          <Select
+            options={pokemonGenerations}
+            onChange={handleChange}
+            value={generation}
+            style={{
+              padding: 1,
+              fontSize: 25,
+              color: "blue",
+              background: "black",
+            }}
+          />
           <br />
           <br />
           <Routes>

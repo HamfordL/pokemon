@@ -35,10 +35,8 @@ const PokemonList = (props) => {
           display: "flex",
           flex: 1,
           justifyContent: "center",
-          alignItems: "center",
-          width: "100%",
-          height: "100%",
           background: "lightblue",
+          height: "100vh",
         }}
       >
         <Spin size="large" tip="Loading pokemon data" />
@@ -47,9 +45,28 @@ const PokemonList = (props) => {
   }
 
   return (
-    <Row gutter={[16, 16]}>
+    <Row
+      style={{
+        display: "flex",
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%",
+        height: "100%",
+        background: "lightblue",
+      }}
+      gutter={[16, 16]}
+    >
       {pokemons.map((pokemon) => (
-        <Col key={pokemon.name} span={6}>
+        <Col
+          style={{
+            fontWeight: "bold",
+            fontVariantCaps: "small-caps",
+            fontSize: 24,
+          }}
+          key={pokemon.name}
+          span={6}
+        >
           <div
             style={{
               boxShadow:
